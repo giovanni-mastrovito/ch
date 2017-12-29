@@ -1172,7 +1172,7 @@
             // Create Database
             echo $conn->CreateDatabase($_POST["dbname"]);
             // Create Tables 
-			$a = strip_tags($_POST["dbname"]);
+			$a = filter_input(INPUT_POST,'dbname',FILTER_SANITIZE_STRIPPED);
             mysql_select_db($a, $con);
 			//corretto errore issue #9662
             $table_prefix = addslashes($_POST["tableprefix"]);

@@ -1166,13 +1166,13 @@
             // Connect to Server 
 
             $conn = new Database;
-            echo $conn->Connection($_POST["server"], $_POST["username"], $_POST["password"]);
+            echo $conn->Connection(filter_input(INPUT_POST,'server',FILTER_SANITIZE_STRING), filter_input(INPUT_POST,'username',FILTER_SANITIZE_STRING), filter_input(INPUT_POST,'password',FILTER_SANITIZE_STRING));
             $con = $conn->get_Connection();
 
             // Create Database
-            echo $conn->CreateDatabase($_POST["dbname"]);
+            echo $conn->CreateDatabase(filter_input(INPUT_POST,'dbname',FILTER_SANITIZE_STRING));
             // Create Tables 
-			$a = filter_input(INPUT_POST,'dbname',FILTER_SANITIZE_STRING);
+			$a = filter_input(INPUT_POST,'dbname',FILTER_SANITIZE_STRING));
             mysql_select_db($a, $con);
 			//corretto errore issue #9662
             $table_prefix = addslashes($_POST["tableprefix"]);
